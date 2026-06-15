@@ -14,7 +14,7 @@ la que el analizador sigue la pista del piso actual.
 
 La declaración fija el rango de pisos y el estado inicial del ascensor:
 
-```
+```elevator
 ascensor torre pisos 10;
 ```
 
@@ -49,7 +49,7 @@ desplazamiento **relativo**.
 | `subir N;` | relativo | sube `N` pisos desde el piso actual |
 | `bajar N;` | relativo | baja `N` pisos desde el piso actual |
 
-```
+```elevator
 ascensor torre pisos 10;
 
 ir_a 5;     // va al piso 5
@@ -61,7 +61,7 @@ ir_a 0;     // vuelve al 0
 !!! example "Programa válido completo"
     Un recorrido lineal que no viola ninguna regla del dominio:
 
-    ```
+    ```elevator
     ascensor torre pisos 10;
 
     ir_a 5;
@@ -81,7 +81,7 @@ el comando correspondiente).
 
 ## Comandos de puerta
 
-```
+```elevator
 abrir;
 cerrar;
 ```
@@ -92,7 +92,7 @@ argumento. Su interacción con el movimiento se describe en la
 
 ## Esperar
 
-```
+```elevator
 esperar 3 segundos;
 ```
 
@@ -114,7 +114,7 @@ muestran a continuación son **exactos**.
 
 Para `ir_a`, se comprueba el **destino**:
 
-```
+```elevator
 ascensor torre pisos 5;
 ir_a 8;
 ```
@@ -126,7 +126,7 @@ Error semántico [línea 2, columna 1]: no se puede ir al piso 8: excede el rang
 Para `subir` y `bajar`, se comprueba el **piso resultante** a partir del piso
 actual:
 
-```
+```elevator
 ascensor torre pisos 5;
 ir_a 3;
 subir 10;
@@ -148,7 +148,7 @@ Error semántico [línea 3, columna 1]: desde el piso 3 no se puede subir 10 pis
     El ascensor no puede moverse con la puerta abierta. Hay que `cerrar` antes de
     `ir_a`, `subir` o `bajar`.
 
-```
+```elevator
 ascensor torre pisos 5;
 abrir;
 subir 1;
@@ -160,7 +160,7 @@ Error semántico [línea 3, columna 1]: no se puede mover el ascensor con la pue
 
 La forma correcta es cerrar la puerta antes de volver a moverse:
 
-```
+```elevator
 ascensor torre pisos 5;
 ir_a 2;
 abrir;
@@ -176,7 +176,7 @@ subir 1;
     **positivo**. Para ir hacia abajo se usa `bajar`, no `subir` con un número
     negativo.
 
-```
+```elevator
 ascensor torre pisos 5;
 subir -1;
 ```
@@ -185,7 +185,7 @@ subir -1;
 Error semántico [línea 2, columna 1]: el movimiento de 'subir' debe ser positivo
 ```
 
-```
+```elevator
 ascensor torre pisos 5;
 esperar 0 segundos;
 ```
@@ -213,7 +213,7 @@ desconocido tras ramas ambiguas»**:
   constante (por ejemplo, una variable), el piso también queda **DESCONOCIDO**.
 
 !!! example "El piso se vuelve desconocido y luego se restablece"
-    ```
+    ```elevator
     ascensor torre pisos 5;
     ir_a 2;
 

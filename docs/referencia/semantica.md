@@ -52,7 +52,7 @@ Cada uno de estos crea un ámbito anidado, que desaparece al cerrarse:
 
 Una variable declarada dentro de un ámbito anidado **no es visible fuera de él**:
 
-```
+```elevator
 ascensor torre pisos 5;
 {
     var interna : numero = 1;
@@ -73,7 +73,7 @@ Error semántico [línea 6, columna 10]: la variable 'interna' no ha sido declar
 
 Toda variable debe declararse (con `var`) antes de leerse o asignársele un valor.
 
-```
+```elevator
 ascensor torre pisos 10;
 imprimir x;
 ```
@@ -88,7 +88,7 @@ No se puede declarar dos veces la misma variable **dentro del mismo ámbito**.
 (Declararla de nuevo en un ámbito anidado sí es válido: la nueva oculta a la
 anterior mientras dura ese ámbito.)
 
-```
+```elevator
 ascensor torre pisos 10;
 var x : numero = 1;
 var x : numero = 2;
@@ -103,7 +103,7 @@ Error semántico [línea 3, columna 1]: la variable 'x' ya fue declarada en este
 El inicializador de `var` es opcional. Si declaras una variable **sin** valor, no
 puedes leerla hasta haberle asignado uno con `=`.
 
-```
+```elevator
 ascensor torre pisos 10;
 var x : numero;
 imprimir x;
@@ -122,7 +122,7 @@ Error semántico [línea 3, columna 10]: la variable 'x' se usa antes de asignar
 El valor que se asigna —tanto en la declaración `var x : T = expr;` como en una
 asignación `x = expr;`— debe coincidir con el tipo declarado de la variable.
 
-```
+```elevator
 ascensor torre pisos 10;
 var x : numero = verdadero;
 ```
@@ -140,7 +140,7 @@ Los operadores tienen exigencias de tipo según su categoría. Consulta los
   deben ser `numero`.
 - **Lógicos** (`y`, `o`): ambos operandos deben ser `booleano`.
 
-```
+```elevator
 ascensor torre pisos 10;
 var x : numero = 1 + "hola";
 ```
@@ -154,7 +154,7 @@ Error semántico [línea 2, columna 20]: los operandos deben ser de tipo 'numero
 Los operadores de igualdad (`==`, `!=`) admiten cualquier tipo, pero **ambos
 lados deben ser del mismo tipo**.
 
-```
+```elevator
 ascensor torre pisos 5;
 var b : booleano = 1 == "x";
 ```
@@ -168,7 +168,7 @@ Error semántico [línea 2, columna 22]: operación inválida entre un valor 'nu
 El menos unario (`-`) requiere un `numero`; la negación lógica (`no`) requiere un
 `booleano`.
 
-```
+```elevator
 ascensor torre pisos 5;
 var x : numero = -verdadero;
 ```
@@ -181,7 +181,7 @@ Error semántico [línea 2, columna 18]: el operador unario requiere un valor 'n
 
 La condición de un `si` y la de un `mientras` deben ser de tipo `booleano`.
 
-```
+```elevator
 ascensor torre pisos 10;
 si 5 { abrir; }
 ```
@@ -195,7 +195,7 @@ Error semántico [línea 2, columna 4]: la condición debe ser de tipo 'booleano
 En `para i desde A hasta B`, los dos límites `A` y `B` deben ser de tipo
 `numero`. La variable de control `i` es siempre `numero`.
 
-```
+```elevator
 ascensor torre pisos 10;
 para i desde verdadero hasta 3 { imprimir i; }
 ```
@@ -221,7 +221,7 @@ un ascensor real. Para entenderlas en contexto, consulta también la guía
 Cualquier comando del ascensor (`subir`, `bajar`, `ir_a`, `abrir`, `cerrar`,
 `esperar`) requiere que antes se haya declarado un ascensor.
 
-```
+```elevator
 abrir;
 ```
 
@@ -233,7 +233,7 @@ Error semántico [línea 1, columna 1]: no hay ningún ascensor declarado
 
 Solo puede declararse **un** ascensor en todo el programa.
 
-```
+```elevator
 ascensor a pisos 10;
 ascensor b pisos 5;
 ```
@@ -250,7 +250,7 @@ es una constante conocida, un **entero positivo**. Define el rango de pisos
 
 Si el valor no es numérico:
 
-```
+```elevator
 ascensor torre pisos verdadero;
 ```
 
@@ -260,7 +260,7 @@ Error semántico [línea 1, columna 1]: el número de pisos debe ser de tipo 'nu
 
 Si es numérico pero no un entero positivo (por ejemplo, `0`):
 
-```
+```elevator
 ascensor torre pisos 0;
 ```
 
@@ -273,7 +273,7 @@ Error semántico [línea 1, columna 1]: el número de pisos debe ser un entero p
 Los comandos con argumento (`subir`, `bajar`, `ir_a`, `esperar`) exigen que su
 argumento sea de tipo `numero`.
 
-```
+```elevator
 ascensor torre pisos 10;
 subir "dos";
 ```
@@ -287,7 +287,7 @@ Error semántico [línea 2, columna 1]: el argumento de 'subir' debe ser de tipo
 El ascensor no puede moverse con la puerta abierta: `subir`, `bajar` e `ir_a`
 exigen que la puerta esté cerrada. Tras `abrir`, hay que `cerrar` antes de mover.
 
-```
+```elevator
 ascensor torre pisos 10;
 abrir;
 subir 2;
@@ -302,7 +302,7 @@ Error semántico [línea 3, columna 1]: no se puede mover el ascensor con la pue
 La cantidad de pisos de `subir` y `bajar` debe ser **positiva** (mayor que cero).
 Para *bajar*, no se escribe un número negativo: se usa el comando `bajar`.
 
-```
+```elevator
 ascensor torre pisos 10;
 subir 0;
 ```
@@ -315,7 +315,7 @@ Error semántico [línea 2, columna 1]: el movimiento de 'subir' debe ser positi
 
 El tiempo de `esperar N segundos;` también debe ser positivo.
 
-```
+```elevator
 ascensor torre pisos 10;
 esperar 0 segundos;
 ```
@@ -331,7 +331,7 @@ con dos mensajes distintos:
 
 Ir directamente a un piso fuera del rango (`ir_a`):
 
-```
+```elevator
 ascensor torre pisos 5;
 ir_a 8;
 ```
@@ -342,7 +342,7 @@ Error semántico [línea 2, columna 1]: no se puede ir al piso 8: excede el rang
 
 Moverse (`subir` o `bajar`) una cantidad que rebasa el techo o el suelo:
 
-```
+```elevator
 ascensor torre pisos 5;
 ir_a 3;
 subir 10;
@@ -377,7 +377,7 @@ como **desconocido**. No inventa un valor ni reporta un falso positivo. El rango
 se vuelve a comprobar en cuanto un `ir_a` con valor constante restablece un piso
 conocido.
 
-```
+```elevator
 ascensor torre pisos 5;
 var n : numero = 3;
 subir n;
@@ -402,7 +402,7 @@ En este programa, las dos ramas del `si` dejan al ascensor en pisos diferentes (
 y 1), de modo que después el piso es desconocido y `subir 100` **no** dispara
 ningún error:
 
-```
+```elevator
 ascensor torre pisos 5;
 ir_a 2;
 si verdadero {
@@ -420,7 +420,7 @@ Análisis correcto: no se encontraron errores.
 En cuanto un `ir_a` con valor constante fija de nuevo el piso, las comprobaciones
 se reanudan:
 
-```
+```elevator
 ascensor torre pisos 5;
 ir_a 2;
 si verdadero {

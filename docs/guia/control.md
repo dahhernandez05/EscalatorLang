@@ -12,7 +12,7 @@ numéricos, ocultamiento de variables) se detallan en la
 
 ## Condicional: `si` / `sino`
 
-```
+```elevator
 si CONDICIÓN {
     ... // se ejecuta si la condición es verdadera
 } sino {
@@ -32,7 +32,7 @@ Error semántico [línea 5, columna 4]: la condición debe ser de tipo 'booleano
 ```
 
 !!! example "Condicional con las dos ramas"
-    ```
+    ```elevator
     ascensor torre pisos 10;
 
     var destino : numero = 5;
@@ -52,7 +52,7 @@ comparación (`destino > 3`) o cualquier combinación con los operadores lógico
 precedencia.
 
 !!! example "Condicional sin `sino`"
-    ```
+    ```elevator
     ascensor torre pisos 10;
 
     var activo : booleano = verdadero;
@@ -66,7 +66,7 @@ precedencia.
 
 ## Bucle: `mientras`
 
-```
+```elevator
 mientras CONDICIÓN {
     ... // se repite mientras la condición sea verdadera
 }
@@ -76,7 +76,7 @@ Como en el condicional, la **condición debe ser de tipo `booleano`**. El cuerpo
 es un bloque con su propio ámbito.
 
 !!! example "Bucle `mientras`"
-    ```
+    ```elevator
     ascensor torre pisos 10;
 
     var n : numero = 0;
@@ -95,7 +95,7 @@ es un bloque con su propio ámbito.
 
 ## Bucle contado: `para`
 
-```
+```elevator
 para i desde A hasta B {
     ... // i recorre el rango definido por A y B
 }
@@ -112,7 +112,7 @@ para i desde A hasta B {
   ```
 
 !!! example "Bucle contado"
-    ```
+    ```elevator
     ascensor torre pisos 10;
 
     para i desde 1 hasta 3 {
@@ -123,7 +123,7 @@ para i desde A hasta B {
 Como la variable del bucle pertenece al ámbito del cuerpo, usarla **fuera** del
 bucle es un error de variable no declarada:
 
-```
+```elevator
 ascensor torre pisos 10;
 
 para i desde 1 hasta 3 {
@@ -155,7 +155,7 @@ de nombres son:
   ```
 
 !!! example "Una variable interna oculta a la externa"
-    ```
+    ```elevator
     ascensor torre pisos 10;
 
     var x : numero = 1;
@@ -176,7 +176,7 @@ de nombres son:
 Si declaras una variable dentro de un bloque y la usas fuera, el analizador la
 considera no declarada:
 
-```
+```elevator
 ascensor torre pisos 10;
 
 si verdadero {
@@ -208,7 +208,7 @@ hasta que un `ir_a` con valor constante restablece una posición conocida.
     error de rango, aunque el bucle aparente salirse del rango: tras el bucle el
     piso es desconocido, y `ir_a 0` lo restablece dentro de rango.
 
-    ```
+    ```elevator
     ascensor torre pisos 5;
 
     var n : numero = 0;

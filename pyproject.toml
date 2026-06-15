@@ -14,6 +14,10 @@ elevator-lang = "elevator_lang.cli:main"
 Repository = "https://github.com/dahhernandez05/EscalatorLang"
 Documentation = "https://dahhernandez05.github.io/EscalatorLang"
 
+# Lexer de Pygments para resaltar el código de ElevatorLang en la documentación.
+[project.entry-points."pygments.lexers"]
+elevatorlang = "elevator_lang.highlighting:ElevatorLangLexer"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -26,6 +30,7 @@ dev = [
     "pytest>=8.0",
     "ruff>=0.12",
     "ty>=0.0.5",
+    "pygments>=2.18",
 ]
 docs = [
     "mkdocs-material>=9.6",

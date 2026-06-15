@@ -25,7 +25,7 @@ Operan sobre dos valores de tipo `numero` y producen un `numero`.
 | `*`      | multiplicación  |
 | `/`      | división        |
 
-```
+```elevator
 var total : numero = 2 + 3 * 4;     // 14
 var medio : numero = 10 / 2;        // 5
 var resto : numero = (8 - 3) * 2;   // 10
@@ -49,7 +49,7 @@ Comparan dos valores de tipo `numero` y producen un `booleano`.
 | `<=`     | menor o igual que |
 | `>=`     | mayor o igual que |
 
-```
+```elevator
 var alto : booleano = piso > 5;
 var seguro : booleano = velocidad <= 10;
 ```
@@ -65,7 +65,7 @@ del mismo tipo** entre sí.
 | `==`     | igual a     |
 | `!=`     | distinto de |
 
-```
+```elevator
 var llego : booleano = piso == 0;
 var distinto : booleano = nombre != "torre";
 ```
@@ -86,7 +86,7 @@ Combinan dos valores de tipo `booleano` y producen un `booleano`.
 | `y`      | conjunción (AND)     |
 | `o`      | disyunción (OR)      |
 
-```
+```elevator
 var en_rango : booleano = piso >= 0 y piso <= 10;
 var movil : booleano = subiendo o bajando;
 ```
@@ -107,7 +107,7 @@ Se aplican a un único operando, que va a su derecha.
 | `-`      | `numero`          | `numero`   | negación aritmética  |
 | `no`     | `booleano`        | `booleano` | negación lógica      |
 
-```
+```elevator
 var bajo_cero : numero = -5;
 var inverso : booleano = no abierto;
 ```
@@ -159,7 +159,7 @@ operadores del mismo nivel, se agrupan de izquierda a derecha. El operador
     Las siguientes parejas son equivalentes; la columna derecha hace explícita la
     agrupación implícita:
 
-    ```
+    ```elevator
     2 + 3 * 4            =>   2 + (3 * 4)            // * antes que +
     10 - 4 - 2          =>   (10 - 4) - 2           // - asociativo por la izquierda
     a > 0 y b > 0        =>   (a > 0) y (b > 0)      // relacional antes que y
@@ -172,7 +172,7 @@ operadores del mismo nivel, se agrupan de izquierda a derecha. El operador
 Los paréntesis `( )` agrupan una subexpresión y la fuerzan a evaluarse primero,
 por encima de cualquier precedencia. Son la forma de alterar el orden natural.
 
-```
+```elevator
 var sin_parentesis : numero = 2 + 3 * 4;   // 14
 var con_parentesis : numero = (2 + 3) * 4; // 20
 ```
@@ -180,14 +180,14 @@ var con_parentesis : numero = (2 + 3) * 4; // 20
 Una expresión entre paréntesis conserva el tipo de su contenido, de modo que
 puedes anidarlos libremente:
 
-```
+```elevator
 var ok : booleano = no (piso == 0 o piso == 10);
 ```
 
 ## Ejemplos completos
 
 !!! example "Expresiones válidas"
-    ```
+    ```elevator
     var a : numero = 2 + 3 * 4;
     var b : numero = (2 + 3) * 4;
     var c : numero = -5 + 10 / 2;
@@ -211,7 +211,7 @@ var ok : booleano = no (piso == 0 o piso == 10);
     completa, no solo un literal. Por ejemplo, el argumento de un comando del
     ascensor puede ser una expresión aritmética:
 
-    ```
+    ```elevator
     ascensor torre pisos 10;
     var destino : numero = 2;
     ir_a destino + 3;

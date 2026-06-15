@@ -34,7 +34,7 @@ La gramática usa un conjunto reducido de metasímbolos EBNF:
 
 ## Gramática completa
 
-```
+```ebnf
 (* ================================================================= *)
 (* Gramatica formal de ElevatorLang  -  notacion EBNF                 *)
 (* DSL para programar el comportamiento de un ascensor.               *)
@@ -134,7 +134,7 @@ comentario_bloque    = "/*" , { ? cualquier caracter ? } , "*/" ;
     `-3` se analiza como la negación unaria del literal `3`, no como un único
     literal `-3`.
 
-    ```
+    ```elevator
     var x : numero = -3;
     ```
 
@@ -160,7 +160,7 @@ Algunas observaciones que ayudan a leer la gramática:
     variable con inicializador, comandos de movimiento y puerta, espera y un
     condicional con `sino`— y es un programa válido:
 
-    ```
+    ```elevator
     ascensor torre pisos 10;
 
     var destino : numero = 5;

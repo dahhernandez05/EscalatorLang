@@ -134,6 +134,7 @@ source = { editable = "." }
 
 [package.dev-dependencies]
 dev = [
+    { name = "pygments" },
     { name = "pytest" },
     { name = "ruff" },
     { name = "ty" },
@@ -146,6 +147,7 @@ docs = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "pygments", specifier = ">=2.18" },
     { name = "pytest", specifier = ">=8.0" },
     { name = "ruff", specifier = ">=0.12" },
     { name = "ty", specifier = ">=0.0.5" },

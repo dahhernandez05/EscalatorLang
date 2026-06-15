@@ -5,7 +5,7 @@ que se ejecutan de arriba hacia abajo. No hay una función `main` ni un punto de
 entrada especial: el archivo `.asc` se lee de principio a fin y cada sentencia se
 analiza en orden.
 
-```
+```elevator
 programa = { sentencia } ;
 ```
 
@@ -30,7 +30,7 @@ Define el ascensor y su rango de pisos. El número de pisos `N` establece el
 rango válido `0..N`; el ascensor arranca en el **piso 0** con la **puerta
 cerrada**.
 
-```
+```elevator
 ascensor torre pisos 10;
 ```
 
@@ -41,7 +41,7 @@ Más detalles en [Comandos del ascensor](ascensor.md).
 Introduce una variable con un tipo (`numero`, `booleano` o `texto`) y un
 inicializador **opcional**.
 
-```
+```elevator
 var destino : numero = 5;   // con inicializador
 var contador : numero;      // sin inicializador
 ```
@@ -53,7 +53,7 @@ Más detalles en [Tipos y variables](tipos.md).
 Asigna un nuevo valor a una variable **ya declarada**. El tipo del valor debe
 coincidir con el tipo de la variable.
 
-```
+```elevator
 destino = destino + 1;
 ```
 
@@ -61,7 +61,7 @@ destino = destino + 1;
 
 Las acciones del dominio: moverse, abrir y cerrar la puerta, y esperar.
 
-```
+```elevator
 ir_a 5;
 subir 2;
 bajar 3;
@@ -76,7 +76,7 @@ Más detalles en [Comandos del ascensor](ascensor.md).
 
 Evalúa una expresión y la imprime.
 
-```
+```elevator
 imprimir "Subiendo al piso objetivo";
 imprimir destino;
 ```
@@ -86,7 +86,7 @@ imprimir destino;
 Ejecuta un bloque si la condición es verdadera. El bloque `sino` es opcional. La
 condición debe ser de tipo `booleano`.
 
-```
+```elevator
 si destino > 3 {
     subir 2;
 } sino {
@@ -101,7 +101,7 @@ Más detalles en [Control de flujo](control.md).
 El bucle `mientras` repite un bloque mientras se cumpla una condición booleana;
 el bucle `para` cuenta de un valor inicial hasta uno final.
 
-```
+```elevator
 mientras n > 0 {
     imprimir n;
     n = n - 1;
@@ -119,7 +119,7 @@ Más detalles en [Control de flujo](control.md).
 Un grupo de sentencias entre llaves `{ ... }`. Un bloque **introduce un ámbito
 anidado**: las variables declaradas dentro solo existen dentro de él.
 
-```
+```elevator
 {
     var temporal : numero = 0;
     imprimir temporal;
@@ -138,7 +138,7 @@ por completo, así que no afectan al programa: sirven solo para documentarlo.
 
 **Comentario de línea.** Empieza con `//` y llega hasta el final de la línea.
 
-```
+```elevator
 // Esto es un comentario de línea.
 ir_a 5;   // también puede ir al final de una línea con código
 ```
@@ -146,7 +146,7 @@ ir_a 5;   // también puede ir al final de una línea con código
 **Comentario de bloque.** Empieza con `/*` y termina en el primer `*/`. Puede
 ocupar varias líneas.
 
-```
+```elevator
 /* Este comentario
    ocupa varias líneas. */
 ```
@@ -161,7 +161,7 @@ El siguiente programa reúne todos los tipos de sentencia y ambos estilos de
 comentario. Es válido en las tres fases del análisis (léxica, sintáctica y
 semántica).
 
-```
+```elevator
 // Declaración del ascensor: define el rango de pisos 0..10.
 ascensor torre pisos 10;
 

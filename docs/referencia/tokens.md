@@ -160,7 +160,7 @@ completo: no generan ningún token. Hay dos formas.
 | De línea       | `// ...`        | desde `//` hasta el final de la línea          |
 | De bloque      | `/* ... */`     | desde `/*` hasta el primer `*/`; no anida      |
 
-```
+```elevator
 // Esto es un comentario de línea.
 ir_a 5;   // También puede ir al final de una sentencia.
 
@@ -188,7 +188,7 @@ como último token para señalar que no queda más entrada por leer.
 El siguiente programa usa, en conjunto, casi todas las clases de token de la
 tabla:
 
-```
+```elevator
 ascensor torre pisos 10;
 
 // Identificadores, literales y operadores

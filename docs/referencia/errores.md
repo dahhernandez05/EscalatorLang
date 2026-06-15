@@ -48,7 +48,7 @@ El léxico falla cuando encuentra un carácter que no forma parte del alfabeto d
 lenguaje, una cadena de texto sin cerrar, un comentario de bloque sin cerrar o
 una secuencia de escape inválida. Aquí, un carácter inesperado `@`:
 
-```
+```elevator
 ascensor edificio pisos 10;
 var x : numero = 5 @ 3;
 ```
@@ -65,7 +65,7 @@ El sintáctico falla cuando los tokens son válidos pero su **orden** no encaja 
 la gramática. Su descripción siempre tiene la forma `se esperaba X, se encontró
 Y`. Aquí falta el `;` que cierra la declaración de la variable:
 
-```
+```elevator
 ascensor edificio pisos 10;
 
 var destino : numero = 5
@@ -85,7 +85,7 @@ El semántico falla cuando el programa está bien formado pero **viola una regla
 significado** (tipos, variables, o las reglas del dominio del ascensor). Aquí, un
 movimiento que saca al ascensor de su rango de pisos:
 
-```
+```elevator
 ascensor edificio pisos 5;
 
 ir_a 3;
@@ -110,7 +110,7 @@ juntos. Así, una sola ejecución puede corregir varios fallos a la vez.
 Por ejemplo, dos caracteres inesperados en líneas distintas producen **dos**
 errores léxicos:
 
-```
+```elevator
 ascensor edificio pisos 10;
 var x : numero = @ 3;
 var y : numero = $ 4;
@@ -126,7 +126,7 @@ Se encontraron 2 errores.
 Lo mismo ocurre en la fase semántica; dos variables sin declarar dan dos
 diagnósticos independientes:
 
-```
+```elevator
 ascensor edificio pisos 5;
 imprimir a;
 imprimir b;
@@ -166,7 +166,7 @@ la misma ejecución**. Por ejemplo, este programa tiene a la vez un error
 sintáctico (falta el `;` tras la declaración del ascensor) y un error semántico
 (ir al piso 20 excede el rango `0..5`):
 
-```
+```elevator
 ascensor edificio pisos 5
 
 ir_a 20;

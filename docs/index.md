@@ -15,7 +15,7 @@ lo valida en tres fases y reporta los errores con su posición exacta.
 Un programa de ElevatorLang se guarda con extensión `.asc`. Este ejemplo declara
 un ascensor, usa una variable, mueve la cabina y ramifica con un condicional:
 
-```
+```elevator
 ascensor torre pisos 10;
 
 var destino : numero = 5;

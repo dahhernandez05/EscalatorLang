@@ -21,7 +21,7 @@ sintáctica y semántica). Demuestra el uso conjunto de variables, expresiones
 aritméticas, control de flujo y comandos del ascensor **sin violar ninguna
 regla del dominio**.
 
-```
+```elevator
 // prueba_valida.asc
 // Programa correcto en las tres fases: léxico, sintáctico y semántico.
 // Usa variables, expresiones, control de flujo y comandos del ascensor
@@ -94,7 +94,7 @@ El archivo `examples/prueba_error_sintactico.asc` tiene un único fallo: falta e
 `;` al final de la declaración del ascensor. El parser espera un `;` y, en su
 lugar, encuentra el siguiente comando, `ir_a`.
 
-```
+```elevator
 // prueba_error_sintactico.asc
 // Programa con un error sintáctico: falta el ';' al final de la
 // declaración del ascensor, por lo que el parser espera ';' y encuentra 'ir_a'.
@@ -133,7 +133,7 @@ El archivo `examples/prueba_error_semantico.asc` es léxica y sintácticamente
 correcto, pero **viola una regla del dominio**: el ascensor solo tiene 5 pisos
 y, estando en el piso 3, intenta `subir 10`, lo que excede el rango `0..5`.
 
-```
+```elevator
 // prueba_error_semantico.asc
 // Programa sintácticamente correcto, pero semánticamente inválido:
 // 'subir 10' desde el piso 3 excede el rango (0..5) del ascensor.
@@ -174,7 +174,7 @@ Este programa combina variables, un condicional `si … sino`, un bucle
 `mientras` y movimiento del ascensor con la puerta correctamente cerrada antes
 de moverse.
 
-```
+```elevator
 // Ejemplo adicional válido: variables, condicional y bucle 'mientras'.
 ascensor edificio pisos 8;
 
@@ -218,7 +218,7 @@ Análisis correcto: no se encontraron errores.
 Una de las reglas del dominio prohíbe mover el ascensor mientras la puerta está
 abierta. Aquí se abre la puerta y, sin volver a cerrarla, se intenta `subir`.
 
-```
+```elevator
 // Ejemplo adicional con error de dominio: mover con la puerta abierta.
 ascensor torre pisos 10;
 

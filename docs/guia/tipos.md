@@ -22,7 +22,7 @@ El tipo `numero` cubre tanto los enteros como los decimales: no hay dos tipos
 numéricos distintos. Un literal numérico es una secuencia de dígitos que,
 opcionalmente, lleva una parte decimal introducida por un punto.
 
-```
+```elevator
 var pisos_totales : numero = 10;
 var tarifa : numero = 19.95;
 ```
@@ -38,7 +38,7 @@ var tarifa : numero = 19.95;
 El tipo `booleano` solo tiene dos valores, escritos con las palabras reservadas
 `verdadero` y `falso`.
 
-```
+```elevator
 var es_express : booleano = verdadero;
 var en_pausa : booleano = falso;
 ```
@@ -59,7 +59,7 @@ dobles. Dentro de una cadena puedes usar **secuencias de escape**:
 | `\"` | comilla doble literal |
 | `\\` | barra invertida literal |
 
-```
+```elevator
 var mensaje : texto = "Subiendo\tal piso objetivo\n";
 var cita : texto = "Dijo \"hola\" y entró";
 ```
@@ -77,14 +77,14 @@ var cita : texto = "Dijo \"hola\" y entró";
 Una variable se declara con la palabra reservada `var`, su nombre, dos puntos, su
 tipo y, opcionalmente, un inicializador `= expr`. La declaración termina en `;`.
 
-```
+```elevator
 var x : numero = 5;
 ```
 
 El inicializador es **opcional**. También puedes declarar una variable sin darle
 un valor inicial:
 
-```
+```elevator
 var contador : numero;
 ```
 
@@ -93,7 +93,7 @@ var contador : numero;
     **usas** (la lees en una expresión, la imprimes, etc.) antes de asignarle un
     valor, el analizador lo reporta:
 
-    ```
+    ```elevator
     ascensor torre pisos 5;
     var x : numero;
     imprimir x;
@@ -110,7 +110,7 @@ var contador : numero;
 No puedes declarar dos veces la misma variable en el mismo ámbito. Hacerlo es un
 error de redeclaración:
 
-```
+```elevator
 ascensor torre pisos 5;
 var x : numero = 0;
 var x : texto = "hola";
@@ -132,7 +132,7 @@ Error semántico [línea 3, columna 1]: la variable 'x' ya fue declarada en este
 Para cambiar el valor de una variable ya declarada se usa una sentencia de
 asignación: el nombre, `=`, la expresión y `;`.
 
-```
+```elevator
 contador = 0;
 contador = contador + 1;
 ```
@@ -147,7 +147,7 @@ Error semántico [línea 1, columna 1]: la variable 'destino' no ha sido declara
 La asignación también es la forma de dar valor a una variable que se declaró sin
 inicializador, evitando el error de "usar antes de asignar":
 
-```
+```elevator
 var aviso : texto;
 aviso = "Puerta abierta";
 imprimir aviso;
@@ -160,7 +160,7 @@ inicializador como las asignaciones posteriores deben producir un valor del
 **mismo tipo** que la variable; de lo contrario, el analizador reporta un error de
 incompatibilidad de tipos.
 
-```
+```elevator
 ascensor torre pisos 5;
 var x : numero = 0;
 x = verdadero;
@@ -172,7 +172,7 @@ Error semántico [línea 3, columna 1]: no se puede asignar un valor de tipo 'bo
 
 La misma comprobación se aplica al inicializador de la declaración:
 
-```
+```elevator
 ascensor torre pisos 5;
 var activo : booleano = 3;
 ```
@@ -195,7 +195,7 @@ Error semántico [línea 2, columna 1]: no se puede asignar un valor de tipo 'nu
 El siguiente programa declara variables de los tres tipos, las usa, las reasigna y
 se analiza sin errores:
 
-```
+```elevator
 ascensor torre pisos 10;
 
 var piso_objetivo : numero = 5;
