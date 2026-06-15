@@ -65,3 +65,88 @@ def quoted(text: str) -> str:
 def syntax_expected(expected: str, found: str) -> str:
     """Mensaje sintáctico que indica qué se esperaba y qué se encontró."""
     return f"se esperaba {expected}, se encontró {found}"
+
+
+# --- Descripciones de la fase semántica ---
+
+
+def undeclared_variable(name: str) -> str:
+    return f"la variable '{name}' no ha sido declarada"
+
+
+def redeclared_variable(name: str) -> str:
+    return f"la variable '{name}' ya fue declarada en este ámbito"
+
+
+def use_before_assignment(name: str) -> str:
+    return f"la variable '{name}' se usa antes de asignarle un valor"
+
+
+def assignment_type_mismatch(value_type: str, name: str, var_type: str) -> str:
+    return (
+        f"no se puede asignar un valor de tipo '{value_type}' a la variable "
+        f"'{name}' de tipo '{var_type}'"
+    )
+
+
+def binary_type_error(left: str, right: str) -> str:
+    return f"operación inválida entre un valor '{left}' y uno '{right}'"
+
+
+def operand_type_error(expected: str) -> str:
+    return f"los operandos de esta operación deben ser de tipo '{expected}'"
+
+
+def unary_type_error(expected: str, actual: str) -> str:
+    return f"el operador unario requiere un valor '{expected}', no '{actual}'"
+
+
+def condition_not_boolean(actual: str) -> str:
+    return f"la condición debe ser de tipo 'booleano', no '{actual}'"
+
+
+def bound_not_numeric(actual: str) -> str:
+    return f"los límites de 'para' deben ser de tipo 'numero', no '{actual}'"
+
+
+def command_arg_not_numeric(command: str, actual: str) -> str:
+    return f"el argumento de '{command}' debe ser de tipo 'numero', no '{actual}'"
+
+
+def floors_not_numeric(actual: str) -> str:
+    return f"el número de pisos debe ser de tipo 'numero', no '{actual}'"
+
+
+def floors_not_positive() -> str:
+    return "el número de pisos debe ser un entero positivo"
+
+
+def no_ascensor() -> str:
+    return "no hay ningún ascensor declarado"
+
+
+def ascensor_already_declared() -> str:
+    return "el ascensor ya fue declarado"
+
+
+def goto_out_of_range(target: int, max_floor: int) -> str:
+    return f"no se puede ir al piso {target}: excede el rango (0..{max_floor})"
+
+
+def move_out_of_range(floor: int, verb: str, delta: int, max_floor: int) -> str:
+    return (
+        f"desde el piso {floor} no se puede {verb} {delta} pisos: "
+        f"excede el rango (0..{max_floor})"
+    )
+
+
+def move_not_positive(command: str) -> str:
+    return f"el movimiento de '{command}' debe ser positivo"
+
+
+def wait_not_positive() -> str:
+    return "el tiempo de espera debe ser positivo"
+
+
+def move_with_open_door() -> str:
+    return "no se puede mover el ascensor con la puerta abierta; falta 'cerrar'"
