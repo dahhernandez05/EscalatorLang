@@ -1,0 +1,1627 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="DSL para programar un ascensor — analizador léxico, sintáctico y semántico.">
+      
+      
+        <meta name="author" content="dahhernandez05">
+      
+      
+        <link rel="canonical" href="https://dahhernandez05.github.io/EscalatorLang/referencia/tokens/">
+      
+      
+        <link rel="prev" href="../../guia/ascensor/">
+      
+      
+        <link rel="next" href="../gramatica/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Tabla de tokens - ElevatorLang</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tabla-de-tokens" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="ElevatorLang" class="md-header__button md-logo" aria-label="ElevatorLang" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ElevatorLang
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tabla de tokens
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="purple"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dahhernandez05/EscalatorLang" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dahhernandez05/EscalatorLang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ElevatorLang" class="md-nav__button md-logo" aria-label="ElevatorLang" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    ElevatorLang
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dahhernandez05/EscalatorLang" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dahhernandez05/EscalatorLang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Primeros pasos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Primeros pasos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../primeros-pasos/instalacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../primeros-pasos/uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Uso del analizador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía del lenguaje
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guía del lenguaje
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia/estructura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estructura de un programa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia/tipos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tipos y variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia/expresiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expresiones y operadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia/control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control de flujo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia/ascensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comandos del ascensor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referencia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Referencia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabla de tokens
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabla de tokens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#palabras-reservadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Palabras reservadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identificadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identificadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#literales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Literales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#literal-numerico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literal numérico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literal-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literal de texto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literales-booleanos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literales booleanos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delimitadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delimitadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comentarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fin-de-la-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fin de la entrada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-tokenizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de tokenización
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gramatica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gramática (EBNF)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../semantica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reglas semánticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formato de errores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejemplos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#palabras-reservadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Palabras reservadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identificadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identificadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#literales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Literales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#literal-numerico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literal numérico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literal-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literal de texto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literales-booleanos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literales booleanos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delimitadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delimitadores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comentarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fin-de-la-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fin de la entrada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejemplo-de-tokenizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo de tokenización
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tabla-de-tokens">Tabla de tokens<a class="headerlink" href="#tabla-de-tokens" title="Permanent link">&para;</a></h1>
+<p>Un <strong>token</strong> es la unidad léxica mínima que el analizador reconoce en el código
+fuente: una palabra reservada, un identificador, un literal, un operador o un
+delimitador. El <a href="../../primeros-pasos/uso/">analizador léxico</a> recorre el texto de
+un programa <code>.asc</code>, descarta los espacios en blanco y los comentarios, y produce
+la secuencia de tokens que después consumen las fases sintáctica y semántica.</p>
+<p>Esta página es el catálogo completo de las clases de token de ElevatorLang. Cada
+clase se describe con su <strong>patrón</strong> (en estilo expresión regular) y un ejemplo. La
+tabla coincide exactamente con los tipos de token reales (<code>TokenType</code>) definidos
+en el código.</p>
+<div class="admonition note">
+<p class="admonition-title">El espacio en blanco y los comentarios no son tokens</p>
+<p>Los espacios, tabuladores y saltos de línea solo separan tokens; nunca
+producen uno. Los <a href="#comentarios">comentarios</a> se descartan por completo
+durante el escaneo. El único token que no proviene del texto fuente es <code>EOF</code>,
+que el lexer añade al final para marcar el fin de la entrada.</p>
+</div>
+<h2 id="palabras-reservadas">Palabras reservadas<a class="headerlink" href="#palabras-reservadas" title="Permanent link">&para;</a></h2>
+<p>Las palabras reservadas son identificadores con un significado fijo en el
+lenguaje; <strong>no pueden usarse como nombres de variable</strong>. Todas coinciden con el
+patrón de un identificador, pero el lexer las reconoce primero y les asigna su
+tipo propio.</p>
+<p>Se dividen en dos grupos: las del <strong>dominio</strong> (el ascensor y sus comandos) y las
+del <strong>núcleo</strong> (declaraciones, tipos, control de flujo y operadores con nombre).</p>
+<table>
+<thead>
+<tr>
+<th>Grupo</th>
+<th>Palabras reservadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dominio</td>
+<td><code>ascensor</code> · <code>pisos</code> · <code>subir</code> · <code>bajar</code> · <code>ir_a</code> · <code>abrir</code> · <code>cerrar</code> · <code>esperar</code> · <code>segundos</code></td>
+</tr>
+<tr>
+<td>Núcleo</td>
+<td><code>var</code> · <code>numero</code> · <code>booleano</code> · <code>texto</code> · <code>si</code> · <code>sino</code> · <code>mientras</code> · <code>para</code> · <code>desde</code> · <code>hasta</code> · <code>imprimir</code> · <code>verdadero</code> · <code>falso</code> · <code>y</code> · <code>o</code> · <code>no</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Distinción entre mayúsculas y minúsculas</p>
+<p>Las palabras reservadas se escriben en minúsculas. <code>Var</code> o <code>SUBIR</code> no son
+palabras reservadas: se interpretarían como identificadores comunes.</p>
+</div>
+<h2 id="identificadores">Identificadores<a class="headerlink" href="#identificadores" title="Permanent link">&para;</a></h2>
+<p>Un identificador nombra una variable o el ascensor. Comienza por una letra ASCII
+o un guion bajo, y continúa con letras, dígitos o guiones bajos.</p>
+<table>
+<thead>
+<tr>
+<th>Clase de token</th>
+<th>Patrón</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IDENTIFICADOR</code></td>
+<td><code>[a-zA-Z_][a-zA-Z0-9_]*</code></td>
+<td><code>piso</code>, <code>piso_objetivo</code>, <code>_temp</code>, <code>contador2</code>, <code>torre</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Solo ASCII</p>
+<p>El lexer reconoce únicamente letras ASCII (<code>a</code>–<code>z</code>, <code>A</code>–<code>Z</code>) y el guion bajo
+como carácter inicial. Las tildes y la <code>ñ</code> <strong>no</strong> forman parte de un
+identificador válido.</p>
+</div>
+<h2 id="literales">Literales<a class="headerlink" href="#literales" title="Permanent link">&para;</a></h2>
+<h3 id="literal-numerico">Literal numérico<a class="headerlink" href="#literal-numerico" title="Permanent link">&para;</a></h3>
+<p>Un número es una secuencia de dígitos, opcionalmente con una parte decimal. Si
+aparece un punto, debe ir seguido de al menos un dígito; un literal numérico
+nunca termina en punto. Los números <strong>negativos</strong> se obtienen aplicando el
+operador unario <code>-</code> a un literal positivo, no como parte del propio token.</p>
+<table>
+<thead>
+<tr>
+<th>Clase de token</th>
+<th>Patrón</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NUMERO_LITERAL</code> (entero)</td>
+<td><code>[0-9]+</code></td>
+<td><code>0</code>, <code>5</code>, <code>42</code>, <code>10</code></td>
+</tr>
+<tr>
+<td><code>NUMERO_LITERAL</code> (decimal)</td>
+<td><code>[0-9]+\.[0-9]+</code></td>
+<td><code>3.5</code>, <code>0.0</code>, <code>100.25</code></td>
+</tr>
+</tbody>
+</table>
+<p>Un literal sin punto se escanea como entero; uno con punto, como decimal. Ambos
+casos producen el mismo tipo de token (<code>NUMERO_LITERAL</code>) y, semánticamente, el
+mismo tipo del lenguaje: <a href="../../guia/tipos/"><code>numero</code></a>.</p>
+<h3 id="literal-de-texto">Literal de texto<a class="headerlink" href="#literal-de-texto" title="Permanent link">&para;</a></h3>
+<p>Una cadena va encerrada entre comillas dobles y puede contener secuencias de
+escape. No puede abarcar varias líneas: un salto de línea antes de la comilla de
+cierre es un <a href="../errores/">error léxico</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Clase de token</th>
+<th>Patrón</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TEXTO_LITERAL</code></td>
+<td><code>"([^"\\\n]\|\\[nt"\\])*"</code></td>
+<td><code>"hola"</code>, <code>"Piso 1"</code>, <code>"linea\n"</code>, <code>"comilla \" interna"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Las secuencias de escape reconocidas dentro de una cadena son:</p>
+<table>
+<thead>
+<tr>
+<th>Escape</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\n</code></td>
+<td>salto de línea</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>tabulador</td>
+</tr>
+<tr>
+<td><code>\"</code></td>
+<td>comilla doble literal</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>barra invertida literal</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Escapes no reconocidos</p>
+<p>Cualquier otra secuencia tras la barra invertida (por ejemplo <code>\x</code>) es un
+error léxico. Consulta los mensajes en la
+<a href="../errores/">referencia de errores</a>.</p>
+</div>
+<h3 id="literales-booleanos">Literales booleanos<a class="headerlink" href="#literales-booleanos" title="Permanent link">&para;</a></h3>
+<p>Los dos valores de tipo <a href="../../guia/tipos/"><code>booleano</code></a> son palabras reservadas
+con su propio tipo de token; no son identificadores.</p>
+<table>
+<thead>
+<tr>
+<th>Clase de token</th>
+<th>Patrón</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VERDADERO</code></td>
+<td><code>verdadero</code></td>
+<td><code>verdadero</code></td>
+</tr>
+<tr>
+<td><code>FALSO</code></td>
+<td><code>falso</code></td>
+<td><code>falso</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="operadores">Operadores<a class="headerlink" href="#operadores" title="Permanent link">&para;</a></h2>
+<p>Los operadores combinan o transforman valores dentro de una expresión. Su
+significado y precedencia se detallan en
+<a href="../../guia/expresiones/">Expresiones y operadores</a>; aquí solo figuran como
+tokens.</p>
+<table>
+<thead>
+<tr>
+<th>Clase de token</th>
+<th>Patrón</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAS</code></td>
+<td><code>+</code></td>
+<td>suma</td>
+</tr>
+<tr>
+<td><code>MENOS</code></td>
+<td><code>-</code></td>
+<td>resta / negación unaria</td>
+</tr>
+<tr>
+<td><code>POR</code></td>
+<td><code>*</code></td>
+<td>multiplicación</td>
+</tr>
+<tr>
+<td><code>ENTRE</code></td>
+<td><code>/</code></td>
+<td>división</td>
+</tr>
+<tr>
+<td><code>ASIGNAR</code></td>
+<td><code>=</code></td>
+<td>asignación</td>
+</tr>
+<tr>
+<td><code>IGUAL</code></td>
+<td><code>==</code></td>
+<td>igual a</td>
+</tr>
+<tr>
+<td><code>DISTINTO</code></td>
+<td><code>!=</code></td>
+<td>distinto de</td>
+</tr>
+<tr>
+<td><code>MENOR</code></td>
+<td><code>&lt;</code></td>
+<td>menor que</td>
+</tr>
+<tr>
+<td><code>MAYOR</code></td>
+<td><code>&gt;</code></td>
+<td>mayor que</td>
+</tr>
+<tr>
+<td><code>MENOR_IGUAL</code></td>
+<td><code>&lt;=</code></td>
+<td>menor o igual que</td>
+</tr>
+<tr>
+<td><code>MAYOR_IGUAL</code></td>
+<td><code>&gt;=</code></td>
+<td>mayor o igual que</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Operadores con nombre</p>
+<p>La conjunción (<code>y</code>), la disyunción (<code>o</code>) y la negación lógica (<code>no</code>) <strong>no</strong>
+son símbolos: son <a href="#palabras-reservadas">palabras reservadas</a> y se escanean
+como tales.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">El carácter <code>!</code> aislado no es un token</p>
+<p><code>!</code> solo es válido como parte de <code>!=</code>. Un <code>!</code> suelto produce un error léxico:
+no existe el operador de negación con símbolo.</p>
+</div>
+<h2 id="delimitadores">Delimitadores<a class="headerlink" href="#delimitadores" title="Permanent link">&para;</a></h2>
+<p>Los delimitadores estructuran el código: agrupan expresiones, delimitan bloques y
+terminan sentencias o introducen el tipo de una variable.</p>
+<table>
+<thead>
+<tr>
+<th>Clase de token</th>
+<th>Patrón</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PAREN_IZQ</code></td>
+<td><code>(</code></td>
+<td>abre una agrupación de expresión</td>
+</tr>
+<tr>
+<td><code>PAREN_DER</code></td>
+<td><code>)</code></td>
+<td>cierra una agrupación de expresión</td>
+</tr>
+<tr>
+<td><code>LLAVE_IZQ</code></td>
+<td><code>{</code></td>
+<td>abre un bloque</td>
+</tr>
+<tr>
+<td><code>LLAVE_DER</code></td>
+<td><code>}</code></td>
+<td>cierra un bloque</td>
+</tr>
+<tr>
+<td><code>PUNTO_COMA</code></td>
+<td><code>;</code></td>
+<td>termina una sentencia</td>
+</tr>
+<tr>
+<td><code>DOS_PUNTOS</code></td>
+<td><code>:</code></td>
+<td>separa el nombre de su tipo en <code>var</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">No existe la coma</p>
+<p>ElevatorLang no usa la coma <code>,</code> en ninguna construcción. Encontrar una <code>,</code> en
+el código produce un error léxico.</p>
+</div>
+<h2 id="comentarios">Comentarios<a class="headerlink" href="#comentarios" title="Permanent link">&para;</a></h2>
+<p>Los comentarios documentan el código y el analizador los <strong>descarta</strong> por
+completo: no generan ningún token. Hay dos formas.</p>
+<table>
+<thead>
+<tr>
+<th>Forma</th>
+<th>Patrón</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>De línea</td>
+<td><code>// ...</code></td>
+<td>desde <code>//</code> hasta el final de la línea</td>
+</tr>
+<tr>
+<td>De bloque</td>
+<td><code>/* ... */</code></td>
+<td>desde <code>/*</code> hasta el primer <code>*/</code>; no anida</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Esto es un comentario de línea.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">ir_a</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">   </span><span class="c1">// También puede ir al final de una sentencia.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cm">/* Esto es un comentario</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cm">   de bloque que abarca varias líneas. */</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">abrir</span><span class="p">;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Comentario de bloque sin cerrar</p>
+<p>Un <code>/*</code> sin su <code>*/</code> correspondiente llega hasta el final del archivo y produce
+un error léxico. Además, el bloque <strong>no anida</strong>: termina en el primer <code>*/</code> que
+encuentra.</p>
+</div>
+<h2 id="fin-de-la-entrada">Fin de la entrada<a class="headerlink" href="#fin-de-la-entrada" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Clase de token</th>
+<th>Patrón</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EOF</code></td>
+<td>—</td>
+<td>marcador que el lexer añade al final del texto</td>
+</tr>
+</tbody>
+</table>
+<p><code>EOF</code> no proviene de ningún carácter del código: el analizador lo emite siempre
+como último token para señalar que no queda más entrada por leer.</p>
+<h2 id="ejemplo-de-tokenizacion">Ejemplo de tokenización<a class="headerlink" href="#ejemplo-de-tokenizacion" title="Permanent link">&para;</a></h2>
+<p>El siguiente programa usa, en conjunto, casi todas las clases de token de la
+tabla:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">ascensor</span><span class="w"> </span><span class="n">torre</span><span class="w"> </span><span class="nb">pisos</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// Identificadores, literales y operadores</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kd">var</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kd">var</span><span class="w"> </span><span class="n">altura</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.5</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kd">var</span><span class="w"> </span><span class="n">mensaje</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Piso </span><span class="se">\&quot;</span><span class="s">1</span><span class="se">\&quot;\n</span><span class="s">&quot;</span><span class="p">;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kd">var</span><span class="w"> </span><span class="n">activo</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">booleano</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">verdadero</span><span class="p">;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">contador</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">activo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">no</span><span class="w"> </span><span class="p">(</span><span class="n">contador</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="ow">y</span><span class="w"> </span><span class="n">altura</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">100.0</span><span class="p">;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">si</span><span class="w"> </span><span class="n">activo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">falso</span><span class="w"> </span><span class="ow">o</span><span class="w"> </span><span class="n">contador</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="k">imprimir</span><span class="w"> </span><span class="n">mensaje</span><span class="p">;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="cm">/* Comentario</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="cm">   de bloque */</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="nb">ir_a</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="nb">abrir</span><span class="p">;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="nb">esperar</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="nb">segundos</span><span class="p">;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="nb">cerrar</span><span class="p">;</span>
+</code></pre></div>
+<p>Al analizarlo, no se encuentra ningún error:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Análisis correcto: no se encontraron errores.
+</code></pre></div>
+<hr />
+<p>Para ver cómo se combinan estos tokens en construcciones completas, consulta la
+<a href="../gramatica/">gramática</a>. El formato exacto de los diagnósticos léxicos está en
+la <a href="../errores/">referencia de errores</a>, y los tipos del lenguaje a los que dan
+lugar los literales, en <a href="../../guia/tipos/">Tipos</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/dahhernandez05/EscalatorLang" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
