@@ -1,7 +1,7 @@
 """Pruebas de humo del esqueleto del proyecto (Fase 0).
 
 Verifican que el paquete es importable y que el cableado del comando de
-consola responde. Las pruebas de cada fase del analizador se anaden en sus
+consola responde. Las pruebas de cada fase del analizador se añaden en sus
 respectivas fases.
 """
 
