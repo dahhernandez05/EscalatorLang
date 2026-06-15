@@ -46,12 +46,21 @@ class SemanticError(ElevatorLangError):
 
 
 class ErrorCollector:
-    """Acumula errores para que cada fase los reporte todos juntos."""
+    """Acumula errores únicos para que cada fase los reporte todos juntos.
+
+    Descarta diagnósticos idénticos en la misma posición para evitar cascadas de
+    mensajes repetidos cuando varias reglas anidadas fallan en el mismo punto.
+    """
 
     def __init__(self) -> None:
         self._errors: list[ElevatorLangError] = []
+        self._seen: set[tuple[Phase, int, int, str]] = set()
 
     def add(self, error: ElevatorLangError) -> None:
+        key = (error.phase, error.line, error.column, error.description)
+        if key in self._seen:
+            return
+        self._seen.add(key)
         self._errors.append(error)
 
     @property

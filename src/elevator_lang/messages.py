@@ -45,3 +45,23 @@ def unterminated_block_comment() -> str:
 
 def invalid_escape(character: str) -> str:
     return f"secuencia de escape inválida '\\{character}'"
+
+
+# --- Descripciones de la fase sintáctica ---
+
+# Fragmentos reutilizables para los mensajes "se esperaba ...".
+EXPECTED_IDENTIFIER = "un identificador"
+EXPECTED_EXPRESSION = "una expresión"
+EXPECTED_STATEMENT = "una sentencia"
+EXPECTED_TYPE = "un tipo (numero, booleano o texto)"
+END_OF_FILE = "fin de archivo"
+
+
+def quoted(text: str) -> str:
+    """Encierra un símbolo entre comillas simples para los mensajes."""
+    return f"'{text}'"
+
+
+def syntax_expected(expected: str, found: str) -> str:
+    """Mensaje sintáctico que indica qué se esperaba y qué se encontró."""
+    return f"se esperaba {expected}, se encontró {found}"
