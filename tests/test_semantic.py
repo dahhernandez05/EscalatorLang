@@ -70,11 +70,15 @@ def test_type_mismatch_in_declaration() -> None:
 def test_arithmetic_requires_numbers() -> None:
     errors = _analyze('imprimir 1 + "hola";')
     assert len(errors) == 1
+    # El mensaje nombra el tipo esperado y refleja los operandos reales.
     assert "deben ser de tipo 'numero'" in errors[0].description
+    assert "'texto'" in errors[0].description
 
 
 def test_logical_requires_booleans() -> None:
-    assert len(_analyze("imprimir 1 y verdadero;")) == 1
+    errors = _analyze("imprimir 1 y verdadero;")
+    assert len(errors) == 1
+    assert "deben ser de tipo 'booleano'" in errors[0].description
 
 
 def test_relational_yields_boolean() -> None:

@@ -93,8 +93,8 @@ def binary_type_error(left: str, right: str) -> str:
     return f"operación inválida entre un valor '{left}' y uno '{right}'"
 
 
-def operand_type_error(expected: str) -> str:
-    return f"los operandos de esta operación deben ser de tipo '{expected}'"
+def operand_type_error(expected: str, left: str, right: str) -> str:
+    return f"los operandos deben ser de tipo '{expected}', pero son '{left}' y '{right}'"
 
 
 def unary_type_error(expected: str, actual: str) -> str:

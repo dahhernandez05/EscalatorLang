@@ -317,7 +317,10 @@ class SemanticAnalyzer(Visitor[SymbolType | None]):
         if left is None or right is None:
             return
         if left is not expected or right is not expected:
-            self._error(node, messages.operand_type_error(expected.value))
+            self._error(
+                node,
+                messages.operand_type_error(expected.value, left.value, right.value),
+            )
 
     def _check_boolean(self, expr: Expression) -> None:
         expr_type = expr.accept(self)
