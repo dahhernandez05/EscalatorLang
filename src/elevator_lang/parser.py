@@ -32,21 +32,11 @@ from elevator_lang.ast_nodes import (
     WhileStatement,
 )
 from elevator_lang.errors import ElevatorLangError, ErrorCollector, SyntacticError
-from elevator_lang.tokens import Token, TokenType
-
-# Comandos del ascensor y, de ellos, los que llevan un argumento de movimiento.
-_ELEVATOR_COMMANDS: frozenset[TokenType] = frozenset(
-    {
-        TokenType.SUBIR,
-        TokenType.BAJAR,
-        TokenType.IR_A,
-        TokenType.ABRIR,
-        TokenType.CERRAR,
-        TokenType.ESPERAR,
-    }
-)
-_MOVEMENT_COMMANDS: frozenset[TokenType] = frozenset(
-    {TokenType.SUBIR, TokenType.BAJAR, TokenType.IR_A}
+from elevator_lang.tokens import (
+    ELEVATOR_COMMANDS,
+    MOVEMENT_COMMANDS,
+    Token,
+    TokenType,
 )
 
 # Tokens que nombran un tipo del dominio.
@@ -68,7 +58,7 @@ _STATEMENT_STARTERS: frozenset[TokenType] = (
             TokenType.LLAVE_IZQ,
         }
     )
-    | _ELEVATOR_COMMANDS
+    | ELEVATOR_COMMANDS
 )
 _SYNC_POINTS: frozenset[TokenType] = _STATEMENT_STARTERS | frozenset(
     {TokenType.LLAVE_DER}
@@ -127,7 +117,7 @@ class Parser:
             return self._print_statement()
         if token_type is TokenType.LLAVE_IZQ:
             return self._block()
-        if token_type in _ELEVATOR_COMMANDS:
+        if token_type in ELEVATOR_COMMANDS:
             return self._elevator_command()
         if token_type is TokenType.IDENTIFICADOR:
             return self._assignment()
@@ -167,7 +157,7 @@ class Parser:
     def _elevator_command(self) -> ElevatorCommand:
         operator = self._advance()
         argument: Expression | None = None
-        if operator.type in _MOVEMENT_COMMANDS:
+        if operator.type in MOVEMENT_COMMANDS:
             argument = self._expression()
         elif operator.type is TokenType.ESPERAR:
             argument = self._expression()

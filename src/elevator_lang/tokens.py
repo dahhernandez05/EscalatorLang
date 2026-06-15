@@ -118,6 +118,21 @@ KEYWORDS: dict[str, TokenType] = {
     token_type.value: token_type for token_type in _KEYWORD_TYPES
 }
 
+# Comandos del ascensor; de ellos, los de movimiento llevan un argumento.
+ELEVATOR_COMMANDS: frozenset[TokenType] = frozenset(
+    {
+        TokenType.SUBIR,
+        TokenType.BAJAR,
+        TokenType.IR_A,
+        TokenType.ABRIR,
+        TokenType.CERRAR,
+        TokenType.ESPERAR,
+    }
+)
+MOVEMENT_COMMANDS: frozenset[TokenType] = frozenset(
+    {TokenType.SUBIR, TokenType.BAJAR, TokenType.IR_A}
+)
+
 
 @dataclass(frozen=True)
 class Token:
