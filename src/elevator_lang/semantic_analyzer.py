@@ -50,7 +50,7 @@ def _const_number(expr: Expression | None) -> int | float | None:
         value = expr.value
         if isinstance(value, bool):
             return None
-        if isinstance(value, (int, float)):
+        if isinstance(value, int | float):
             return value
         return None
     if isinstance(expr, Grouping):
@@ -260,7 +260,7 @@ class SemanticAnalyzer(Visitor[SymbolType | None]):
         value = node.value
         if isinstance(value, bool):
             return SymbolType.BOOLEANO
-        if isinstance(value, (int, float)):
+        if isinstance(value, int | float):
             return SymbolType.NUMERO
         return SymbolType.TEXTO
 
