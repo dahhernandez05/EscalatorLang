@@ -26,7 +26,7 @@ dev = [
 
 # --- ruff: formatter + linter (PEP 8) ---
 [tool.ruff]
-line-length = 88
+line-length = 90
 target-version = "py312"
 src = ["src", "tests"]
 
