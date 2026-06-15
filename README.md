@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/logo.png" alt="ElevatorLang" width="150">
+</p>
+
 # ElevatorLang
 
 Analizador **léxico**, **sintáctico** y **semántico** de **ElevatorLang**, un
