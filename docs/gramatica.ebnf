@@ -1,0 +1,88 @@
+(* ================================================================= *)
+(* Gramatica formal de ElevatorLang  -  notacion EBNF                 *)
+(* DSL para programar el comportamiento de un ascensor.               *)
+(*                                                                     *)
+(* Convenciones:                                                       *)
+(*   =      definicion          |    alternativa                       *)
+(*   { }    cero o mas          [ ]  opcional                          *)
+(*   ( )    agrupacion          " "  terminal literal                  *)
+(*   ? ?    descripcion informal de un terminal                        *)
+(* ================================================================= *)
+
+programa             = { sentencia } ;
+
+sentencia            = declaracion_ascensor
+                     | declaracion_variable
+                     | asignacion
+                     | comando_ascensor
+                     | sentencia_si
+                     | sentencia_mientras
+                     | sentencia_para
+                     | sentencia_imprimir
+                     | bloque ;
+
+(* --- Declaraciones --- *)
+declaracion_ascensor = "ascensor" , identificador , "pisos" , expresion , ";" ;
+declaracion_variable = "var" , identificador , ":" , tipo , [ "=" , expresion ] , ";" ;
+tipo                 = "numero" | "booleano" | "texto" ;
+
+(* --- Asignacion --- *)
+asignacion           = identificador , "=" , expresion , ";" ;
+
+(* --- Comandos de dominio (ascensor) --- *)
+comando_ascensor     = comando_movimiento
+                     | comando_puerta
+                     | comando_esperar ;
+comando_movimiento   = ( "subir" | "bajar" | "ir_a" ) , expresion , ";" ;
+comando_puerta       = ( "abrir" | "cerrar" ) , ";" ;
+comando_esperar      = "esperar" , expresion , "segundos" , ";" ;
+
+(* --- Estructuras de control --- *)
+sentencia_si         = "si" , expresion , bloque , [ "sino" , bloque ] ;
+sentencia_mientras   = "mientras" , expresion , bloque ;
+sentencia_para       = "para" , identificador , "desde" , expresion ,
+                       "hasta" , expresion , bloque ;
+sentencia_imprimir   = "imprimir" , expresion , ";" ;
+bloque               = "{" , { sentencia } , "}" ;
+
+(* --- Expresiones (de menor a mayor precedencia) --- *)
+expresion            = expr_o ;
+expr_o               = expr_y           , { "o"  , expr_y } ;
+expr_y               = expr_igualdad    , { "y"  , expr_igualdad } ;
+expr_igualdad        = expr_relacional  , { ( "==" | "!=" ) , expr_relacional } ;
+expr_relacional      = expr_aditiva     , { ( "<" | ">" | "<=" | ">=" ) , expr_aditiva } ;
+expr_aditiva         = expr_mult        , { ( "+" | "-" ) , expr_mult } ;
+expr_mult            = expr_unaria      , { ( "*" | "/" ) , expr_unaria } ;
+expr_unaria          = ( "no" | "-" ) , expr_unaria
+                     | primario ;
+primario             = literal_numero
+                     | literal_texto
+                     | literal_booleano
+                     | identificador
+                     | "(" , expresion , ")" ;
+
+(* --- Terminales lexicos --- *)
+identificador        = ( letra | "_" ) , { letra | digito | "_" } ;
+literal_numero       = digito , { digito } , [ "." , digito , { digito } ] ;
+literal_texto        = '"' , { caracter_texto | secuencia_escape } , '"' ;
+literal_booleano     = "verdadero" | "falso" ;
+secuencia_escape     = barra , ( "n" | "t" | '"' | barra ) ;
+barra                = ? una barra invertida (backslash) ? ;
+
+letra                = "a" … "z" | "A" … "Z" ;
+digito               = "0" … "9" ;
+caracter_texto       = ? cualquier caracter excepto comilla doble, barra
+                         invertida o salto de linea ? ;
+
+(* --- Comentarios (descartados por el analizador lexico) --- *)
+comentario_linea     = "//" , { ? cualquier caracter excepto salto de linea ? } ;
+comentario_bloque    = "/*" , { ? cualquier caracter ? } , "*/" ;
+(* El comentario de bloque termina en el primer "*/" y no anida. *)
+
+(* ================================================================= *)
+(* Notas:                                                              *)
+(*  - Los numeros con signo se obtienen mediante 'expr_unaria' ("-").  *)
+(*  - La gramatica define 7 niveles de precedencia (o, y, igualdad,    *)
+(*    relacional, aditiva, multiplicativa, unaria); el minimo exigido  *)
+(*    por las orientaciones generales es 3.                            *)
+(* ================================================================= *)

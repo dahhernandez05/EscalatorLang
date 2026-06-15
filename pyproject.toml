@@ -1,0 +1,49 @@
+[project]
+name = "elevator-lang"
+version = "0.1.0"
+description = "Analizador lexico, sintactico y semantico de ElevatorLang, un DSL para programar ascensores."
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [{ name = "dahhernandez05" }]
+dependencies = []
+
+[project.scripts]
+elevator-lang = "elevator_lang.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/elevator_lang"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.12",
+    "ty>=0.0.5",
+]
+
+# --- ruff: formatter + linter (PEP 8) ---
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, I: isort, N: pep8-naming,
+# UP: pyupgrade, B: bugbear, SIM: simplify, RUF: ruff-specific.
+select = ["E", "W", "F", "I", "N", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+# --- ty: static type checking ---
+[tool.ty.environment]
+python-version = "3.12"
+root = ["./src", "./tests"]
+
+# --- pytest ---
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
