@@ -10,6 +10,10 @@ dependencies = []
 [project.scripts]
 elevator-lang = "elevator_lang.cli:main"
 
+[project.urls]
+Repository = "https://github.com/dahhernandez05/EscalatorLang"
+Documentation = "https://dahhernandez05.github.io/EscalatorLang"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -22,6 +26,9 @@ dev = [
     "pytest>=8.0",
     "ruff>=0.12",
     "ty>=0.0.5",
+]
+docs = [
+    "mkdocs-material>=9.6",
 ]
 
 # --- ruff: formatter + linter (PEP 8) ---

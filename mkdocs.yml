@@ -1,0 +1,75 @@
+site_name: ElevatorLang
+site_url: https://dahhernandez05.github.io/EscalatorLang/
+site_description: DSL para programar un ascensor — analizador léxico, sintáctico y semántico.
+site_author: dahhernandez05
+
+repo_name: dahhernandez05/EscalatorLang
+repo_url: https://github.com/dahhernandez05/EscalatorLang
+
+# docs/superpowers/ guarda especificaciones y planes internos (gitignored): nunca se publica.
+exclude_docs: |
+  /superpowers/
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+    - search.suggest
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/dahhernandez05/EscalatorLang
+
+nav:
+  - Inicio: index.md
+  - Primeros pasos:
+      - Instalación: primeros-pasos/instalacion.md
+      - Uso del analizador: primeros-pasos/uso.md
+  - Guía del lenguaje:
+      - Estructura de un programa: guia/estructura.md
+      - Tipos y variables: guia/tipos.md
+      - Expresiones y operadores: guia/expresiones.md
+      - Control de flujo: guia/control.md
+      - Comandos del ascensor: guia/ascensor.md
+  - Referencia:
+      - Tabla de tokens: referencia/tokens.md
+      - Gramática (EBNF): referencia/gramatica.md
+      - Reglas semánticas: referencia/semantica.md
+      - Formato de errores: referencia/errores.md
+  - Ejemplos: ejemplos.md

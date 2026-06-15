@@ -17,6 +17,9 @@ venv/
 .ty_cache/
 .mypy_cache/
 
+# --- MkDocs build output ---
+/site/
+
 # --- AI-agent artifacts: never committed (project policy) ---
 # CLAUDE.md is ignored at any depth; superpowers specs/plans by path.
 CLAUDE.md
